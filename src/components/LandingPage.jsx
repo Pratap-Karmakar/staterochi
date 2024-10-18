@@ -36,7 +36,7 @@ export default function ResponsiveLanding() {
         />
       </div>
 
-      <header className="relative z-10 p-4 sm:p-6 lg:p-8">
+      {/* <header className="relative z-10 p-4 sm:p-6 lg:p-8">
         <motion.h2
           className="text-2xl font-bold text-emerald-400"
           initial={{ opacity: 0, y: -20 }}
@@ -45,7 +45,7 @@ export default function ResponsiveLanding() {
         >
           InnovateTech
         </motion.h2>
-      </header>
+      </header> */}
 
       <main className="relative flex-grow flex items-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="w-full max-w-6xl mx-auto">
@@ -61,7 +61,7 @@ export default function ResponsiveLanding() {
               animate={{ x: 0 }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.4 }}
             >
-              Innovating Solutions
+              Transforming Concepts
             </motion.span>
             <motion.span
               className="block font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-2"
@@ -69,7 +69,7 @@ export default function ResponsiveLanding() {
               animate={{ x: 0 }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.6 }}
             >
-              for a
+              into seamless
             </motion.span>
             <motion.span
               className="block text-emerald-400 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-4"
@@ -77,7 +77,7 @@ export default function ResponsiveLanding() {
               animate={{ y: 0 }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.8 }}
             >
-              digital future
+              User Experiences
             </motion.span>
           </motion.h1>
         </div>
@@ -92,7 +92,7 @@ export default function ResponsiveLanding() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
             >
-              InnovateTech Inc. Shaping the Future, <span className="text-emerald-400">Today.</span>
+              Naiyo24 pvt ltd. Shaping the Future, <span className="text-emerald-400">Today.</span>
             </motion.p>
             <motion.p
               className="text-xs sm:text-sm text-slate-300 text-center md:text-left"

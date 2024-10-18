@@ -1,7 +1,7 @@
-import About from "@/components/About";
 import Footer from "@/components/Footer";
 import ResponsiveLanding from "@/components/LandingPage";
 import ProjectContact from "@/components/ProjectContact";
+import Something from "@/components/Something";
 import TeamData from "@/components/TeamData";
 import WhatWeDo from "@/components/WhatWeDo";
 
@@ -9,28 +9,23 @@ export default function Home() {
   return (
     <div>
       <section className="sticky top-0">
-
-      <ResponsiveLanding/>
+        <ResponsiveLanding />
       </section>
       <section className="sticky top-0">
+        <WhatWeDo />
 
-      <About/>
+        <section className="sticky top-0">
+          <Something />
+        </section>
       </section>
       <section className="sticky top-0">
-
-      <WhatWeDo/>
+        <TeamData />
       </section>
       <section className="sticky top-0">
-
-      <TeamData/>
+        <ProjectContact />
       </section>
       <section className="sticky top-0">
-
-      <ProjectContact/>
-      </section>
-      <section className="sticky top-0">
-
-      <Footer/>
+        <Footer />
       </section>
     </div>
   );

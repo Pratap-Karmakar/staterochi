@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { motion, useAnimation } from "framer-motion"
 import Link from "next/link"
 
-const Footer = () => {
+export default function Footer() {
   const controls = useAnimation()
   const [mounted, setMounted] = useState(false)
 
@@ -134,6 +134,7 @@ const ParticleBackground = () => {
         y: Math.random() * 100,
         size: Math.random() * 3 + 1,
         duration: Math.random() * 10 + 10,
+        delay: Math.random() * 5,
       }))
     }
 
@@ -160,18 +161,17 @@ const ParticleBackground = () => {
             top: `${particle.y}%`,
           }}
           animate={{
-            y: ['0%', '100%'],
             opacity: [0, 1, 0],
+            scale: [1, 1.2, 1],
           }}
           transition={{
             duration: particle.duration,
             repeat: Infinity,
-            ease: "linear",
+            delay: particle.delay,
+            ease: "easeInOut",
           }}
         />
       ))}
     </div>
   )
 }
-
-export default Footer

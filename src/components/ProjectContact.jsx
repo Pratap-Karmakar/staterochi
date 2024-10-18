@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 
-export default function ProjectContact() {
+export default function CosmicExplorer() {
   const router = useRouter()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
@@ -47,19 +47,19 @@ export default function ProjectContact() {
   return (
     <motion.div 
       ref={ref}
-      className="w-full min-h-screen bg-gray-900 text-white flex flex-col justify-center items-center overflow-hidden relative p-4 sm:p-6 md:p-8 lg:p-10"
+      className="w-full min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-indigo-900 text-white flex flex-col justify-center items-center overflow-hidden relative p-4 sm:p-6 md:p-8 lg:p-10"
       initial="hidden"
       animate={controls}
       variants={containerVariants}
     >
-      {/* Responsive star background */}
-      {[...Array(100)].map((_, index) => (
+      {/* Enhanced star background */}
+      {[...Array(200)].map((_, index) => (
         <motion.div
           key={index}
           className="absolute rounded-full bg-white"
           style={{
-            width: `${Math.random() * 2 + 1}px`,
-            height: `${Math.random() * 2 + 1}px`,
+            width: `${Math.random() * 3 + 1}px`,
+            height: `${Math.random() * 3 + 1}px`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
           }}
@@ -78,31 +78,31 @@ export default function ProjectContact() {
       <div className="text-center relative z-10 max-w-4xl mx-auto">
         <motion.div variants={itemVariants}>
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Explore the Cosmos
+            Cosmic Explorer
           </motion.h1>
         </motion.div>
         <motion.div variants={itemVariants}>
           <motion.p 
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 text-gray-300"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 sm:mb-8 text-gray-300"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Embark on a Stellar Journey
+            Embark on an Interstellar Odyssey
           </motion.p>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-400">
-            Discover the wonders of the universe and unravel the mysteries of space.
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 sm:mb-10 text-gray-400">
+            Unravel the mysteries of the cosmos and chart your course through the stars.
           </p>
         </motion.div>
       </div>
 
       <motion.div 
-        className="mt-4 sm:mt-6 md:mt-8"
+        className="mt-6 sm:mt-8 md:mt-10"
         variants={itemVariants}
       >
         <motion.div
@@ -111,7 +111,7 @@ export default function ProjectContact() {
           initial="initial"
         >
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"
+            className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
             initial={{ y: "100%" }}
             variants={{
               hover: { y: 0 },
@@ -119,7 +119,7 @@ export default function ProjectContact() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           />
           <motion.button
-            className="relative z-10 text-base sm:text-lg md:text-xl lg:text-2xl px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-3 md:py-4 transition-colors duration-300 bg-transparent border-2 border-white rounded-full"
+            className="relative z-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-8 sm:px-10 md:px-12 lg:px-16 py-3 sm:py-4 md:py-5 transition-colors duration-300 bg-transparent border-2 border-white rounded-full"
             variants={{
               initial: { color: "#ffffff" },
               hover: { color: "#ffffff" },
@@ -128,56 +128,28 @@ export default function ProjectContact() {
             whileTap={{ scale: 0.95 }}
             onClick={handleExplore}
           >
-            Launch Mission
+            Launch Expedition
           </motion.button>
         </motion.div>
       </motion.div>
       
-      {/* Responsive floating planets */}
-      {[...Array(5)].map((_, index) => (
-        <motion.div
-          key={index}
-          className="absolute rounded-full"
-          style={{
-            width: `${Math.random() * 60 + 20}px`,
-            height: `${Math.random() * 60 + 20}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle at 30% 30%, hsl(${Math.random() * 360}, 70%, 50%), hsl(${Math.random() * 360}, 100%, 20%))`,
-          }}
-          animate={{
-            x: [0, Math.random() * 100 - 50],
-            y: [0, Math.random() * 100 - 50],
-            rotate: 360,
-          }}
-          transition={{
-            duration: Math.random() * 60 + 30,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        />
-      ))}
 
-      {/* Responsive orbiting asteroid belt */}
+      {/* Animated nebula effect */}
       <motion.div
-        className="absolute w-[150%] h-[150%] border-[1px] border-gray-600 rounded-full"
-        style={{ borderStyle: 'dashed' }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
-      >
-        {[...Array(30)].map((_, index) => (
-          <motion.div
-            key={index}
-            className="absolute rounded-full bg-gray-400"
-            style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-      </motion.div>
+        className="absolute inset-0 opacity-20"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(255,0,255,0.2) 0%, rgba(0,0,255,0.2) 50%, rgba(0,255,255,0.2) 100%)',
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
     </motion.div>
   )
 }

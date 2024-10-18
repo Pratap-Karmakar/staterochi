@@ -1,18 +1,21 @@
 "use client"
 
 import React from "react"
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimation, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useRouter } from 'next/navigation'
+import { ChevronRight } from "lucide-react"
 
 const fadeIn = ({ direction = "up", delay = 0 }) => ({
   hidden: {
     opacity: 0,
     y: direction === "up" ? 50 : direction === "down" ? -50 : 0,
+    x: direction === "left" ? 50 : direction === "right" ? -50 : 0,
   },
   show: {
     opacity: 1,
     y: 0,
+    x: 0,
     transition: {
       type: "spring",
       damping: 15,
@@ -30,14 +33,14 @@ const lineVariants = {
 
 const FloatingShape = ({ animate }) => (
   <motion.div
-    className="absolute rounded-full bg-gradient-to-r from-primary to-secondary opacity-10"
+    className="absolute rounded-full bg-gradient-to-r from-primary to-secondary opacity-20"
     style={{
-      width: `${Math.random() * 100 + 50}px`,
-      height: `${Math.random() * 100 + 50}px`,
+      width: `${Math.random() * 100 + 80}px`,
+      height: `${Math.random() * 100 + 80}px`,
     }}
     animate={animate}
     transition={{
-      duration: Math.random() * 20 + 10,
+      duration: Math.random() * 20 + 15,
       repeat: Infinity,
       repeatType: "reverse",
       ease: "easeInOut",
@@ -45,7 +48,23 @@ const FloatingShape = ({ animate }) => (
   />
 )
 
-export default function About() {
+const GlowingOrb = () => (
+  <motion.div
+    className="absolute w-72 h-72 bg-gradient-to-r from-primary to-secondary rounded-full filter blur-3xl opacity-30"
+    animate={{
+      scale: [1, 1.3, 1],
+      opacity: [0.2, 0.5, 0.2],
+      rotate: [0, 360],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      repeatType: "reverse",
+    }}
+  />
+)
+
+export default function Something() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.3,
@@ -66,10 +85,10 @@ export default function About() {
 
   return (
     <div className="relative bg-background w-full min-h-screen overflow-hidden flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=600&width=800')] opacity-5 bg-repeat" />
+      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=600&width=800')] opacity-10 bg-repeat" />
 
-      {/* Animated Background */}
-      {[...Array(15)].map((_, index) => (
+      {/* Floating Animated Shapes */}
+      {[...Array(20)].map((_, index) => (
         <FloatingShape
           key={index}
           animate={{
@@ -79,6 +98,10 @@ export default function About() {
           }}
         />
       ))}
+
+      {/* Glowing Orbs */}
+      <GlowingOrb />
+      <GlowingOrb />
 
       <div
         ref={ref}
@@ -92,9 +115,18 @@ export default function About() {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight">
             Welcome to{" "}
-            <span className="text-primary block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              NAIYO24 PRIVATE LIMITED
-            </span>
+            <AnimatePresence>
+              <motion.span
+                key="company-name"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-primary block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+              >
+                NAIYO24 PRIVATE LIMITED
+              </motion.span>
+            </AnimatePresence>
           </h2>
           <motion.div
             initial="hidden"
@@ -112,7 +144,20 @@ export default function About() {
           className="space-y-6 sm:space-y-8 max-w-2xl"
         >
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">
-            Innovating Your Digital Presence
+            <AnimatePresence>
+              {["Innovating", "Your", "Digital", "Presence"].map((word, index) => (
+                <motion.span
+                  key={word}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="inline-block mr-2"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </AnimatePresence>
           </h3>
           <motion.div
             initial="hidden"
@@ -131,12 +176,13 @@ export default function About() {
           </motion.p>
           <motion.button
             variants={fadeIn({ direction: "up", delay: 0.6 })}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-primary to-secondary text-primary-foreground px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:from-primary/90 hover:to-secondary/90 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+            className="group bg-gradient-to-r from-primary to-secondary text-primary-foreground px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:from-primary/90 hover:to-secondary/90 transform hover:-translate-y-2 shadow-lg hover:shadow-xl flex items-center justify-center"
             onClick={handleLearnMore}
           >
             Learn More
+            <ChevronRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </motion.button>
         </motion.div>
       </div>
