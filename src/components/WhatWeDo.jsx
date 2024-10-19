@@ -127,7 +127,7 @@ export default function Component() {
             animate={controls}
             className="text-center max-w-3xl"
           >
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 bg-clip-text text-white bg-gradient-to-r from-primary to-primary-foreground">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 bg-clip-text text-[#FFA801] bg-gradient-to-r from-primary to-primary-foreground">
               What we do.
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 mb-12 px-4 sm:px-0 leading-relaxed">
@@ -173,9 +173,9 @@ export default function Component() {
               {serviceData.map((item, index) => (
                 <SwiperSlide key={index}>
                   <Link href={item.link}>
-                    <Card className="h-[300px] sm:h-[300px] bg-card/5 backdrop-blur-sm hover:bg-card/10 transition-all duration-300 group border-none shadow-xl">
+                    <Card className="h-[300px] bg-black sm:h-[300px] bg-card/5 backdrop-blur-sm hover:bg-card/10 transition-all duration-300 group border-none shadow-xl">
                       <CardHeader className="flex flex-row items-center">
-                        <div className={`p-2 rounded-full bg-gradient-to-br ${item.gradient}`}>
+                        <div className={`p-2 rounded-full bg-[#FFA801]`}>
                           {item.icon}
                         </div>
                       </CardHeader>
@@ -187,10 +187,10 @@ export default function Component() {
                           {item.description}
                         </CardDescription>
                         <div className="absolute bottom-4 right-4">
-                          <ArrowUpRight className="text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                          <ArrowUpRight className="text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 transform text-[#FFA801] group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </div>
                       </CardContent>
-                      <div className={`absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r ${item.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                      <div className={`absolute bottom-0 left-0 h-1 w-full bg-[#FFA801] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
                     </Card>
                   </Link>
                 </SwiperSlide>

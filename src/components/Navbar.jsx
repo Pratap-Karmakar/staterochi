@@ -76,14 +76,14 @@ export default function Navbar() {
     return (
       <Link href={href} key={index} passHref legacyBehavior>
         <motion.a
-          className="text-sm lg:text-base xl:text-lg capitalize font-light hover:text-green-400 transition-colors duration-300 relative group"
+          className="text-sm lg:text-base xl:text-lg capitalize font-light hover:text-[#FFA801] transition-colors duration-300 relative group"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           {item}
           <motion.span
-            className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 group-hover:w-full transition-all duration-300"
+            className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFA801] group-hover:w-full transition-all duration-300"
             layoutId="underline"
           />
         </motion.a>
@@ -108,7 +108,7 @@ export default function Navbar() {
             animate="visible"
           >
             <Link href='/'>
-              <Image src={logo} alt="Logo" width={48} height={48} className="rounded-full w-10 md:w-20 hover:shadow-lg transition-shadow duration-300 bg-emerald-100" />
+              <Image src={logo} alt="Logo" width={48} height={48} className="rounded-full w-10 md:w-16 hover:shadow-lg transition-shadow duration-300 bg-emerald-50" />
             </Link>
           </motion.div>
 

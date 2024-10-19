@@ -7,11 +7,11 @@ import Link from "next/link"
 
 export default function ResponsiveLanding() {
   return (
-    <div className="relative flex flex-col justify-between min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="relative flex flex-col justify-between min-h-screen overflow-hidden bg-black text-white">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full"
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-[#FFA801]/20 to-transparent rounded-full"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 360],
@@ -56,7 +56,7 @@ export default function ResponsiveLanding() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.span
-              className="block text-amber-300 mb-2"
+              className="block text-[#FFA801] mb-2"
               initial={{ x: -1000 }}
               animate={{ x: 0 }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.4 }}
@@ -72,7 +72,7 @@ export default function ResponsiveLanding() {
               into seamless
             </motion.span>
             <motion.span
-              className="block text-emerald-400 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-4"
+              className="block text-[#FFA801] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-4"
               initial={{ y: 1000 }}
               animate={{ y: 0 }}
               transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.8 }}
@@ -92,7 +92,7 @@ export default function ResponsiveLanding() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
             >
-              Naiyo24 pvt ltd. Shaping the Future, <span className="text-emerald-400">Today.</span>
+              Naiyo24 pvt ltd. Shaping the Future, <span className="text-[#FFA801]">Today.</span>
             </motion.p>
             <motion.p
               className="text-xs sm:text-sm text-slate-300 text-center md:text-left"
@@ -104,7 +104,7 @@ export default function ResponsiveLanding() {
             </motion.p>
             <Link href="/contact" passHref>
               <motion.button
-                className="group py-2 sm:py-3 px-6 sm:px-8 bg-gradient-to-r from-emerald-500 to-amber-500 rounded-full cursor-pointer flex items-center gap-2 transition-all duration-300 hover:from-emerald-600 hover:to-amber-600 hover:scale-105 shadow-lg hover:shadow-xl"
+                className="group py-2 sm:py-3 px-6 sm:px-8 bg-[#FFA801] text-black rounded-full cursor-pointer flex items-center gap-2 transition-all duration-300 hover:from-emerald-600 hover:to-amber-600 hover:scale-105 shadow-lg hover:shadow-xl"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.6 }}

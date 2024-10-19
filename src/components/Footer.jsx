@@ -7,10 +7,34 @@ import Link from "next/link"
 export default function Footer() {
   const controls = useAnimation()
   const [mounted, setMounted] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    controls.start("visible")
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          controls.start("visible") // Trigger the animation when the footer is visible
+        } else {
+          setIsVisible(false)
+          controls.start("hidden") // Optionally, trigger hidden animation when not visible
+        }
+      },
+      { threshold: 0.5 } // Adjust the threshold to trigger when 50% of the element is visible
+    )
+
+    const footerElement = document.getElementById("footer")
+    if (footerElement) {
+      observer.observe(footerElement)
+    }
+
+    return () => {
+      if (footerElement) {
+        observer.unobserve(footerElement)
+      }
+    }
   }, [controls])
 
   const containerVariants = {
@@ -37,7 +61,8 @@ export default function Footer() {
 
   return (
     <motion.footer
-      className="relative text-white pt-20 sm:pt-32 md:pt-44 w-full min-h-screen bg-zinc-900 py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 flex flex-col overflow-hidden"
+      id="footer"
+      className="relative text-white pt-20 sm:pt-32 md:pt-44 w-full min-h-screen bg-black py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-8 flex flex-col overflow-hidden"
       initial="hidden"
       animate={controls}
       variants={containerVariants}
@@ -47,7 +72,7 @@ export default function Footer() {
         <motion.div className="lg:w-1/2 flex flex-col justify-between" variants={itemVariants}>
           <div className="space-y-6">
             <motion.h2
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-transparent bg-clip-text bg-[#FF9800]"
               variants={itemVariants}
             >
               About.
@@ -59,12 +84,12 @@ export default function Footer() {
               technology and expert services.
             </motion.p>
           </div>
-          <motion.div className="mt-8 lg:mt-0 font-semibold text-xl sm:text-2xl text-gray-300" variants={itemVariants}>
+          <motion.div className="mt-8 lg:mt-0 font-semibold text-xl sm:text-2xl text-[#FF9800]" variants={itemVariants}>
             Naiyo24 pvt ltd.
           </motion.div>
         </motion.div>
         <motion.div className="lg:w-1/2 space-y-8 sm:space-y-12" variants={itemVariants}>
-          <motion.h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-100" variants={itemVariants}>
+          <motion.h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#FF9800]" variants={itemVariants}>
             Quick Links.
           </motion.h3>
           <motion.div className="grid grid-cols-2 sm:grid-cols-3 gap-8" variants={containerVariants}>
