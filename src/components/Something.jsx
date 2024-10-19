@@ -1,198 +1,124 @@
-"use client"
+'use client'
 
-import React from "react"
-import { motion, useAnimation, AnimatePresence } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { useRouter } from 'next/navigation'
-import { ChevronRight } from "lucide-react"
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import naiyo24 from '../assets/naiyo24.png'
+import Image from 'next/image'
 
-const fadeIn = ({ direction = "up", delay = 0 }) => ({
-  hidden: {
-    opacity: 0,
-    y: direction === "up" ? 50 : direction === "down" ? -50 : 0,
-    x: direction === "left" ? 50 : direction === "right" ? -50 : 0,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    x: 0,
-    transition: {
-      type: "spring",
-      damping: 15,
-      stiffness: 100,
-      delay,
-      duration: 0.8,
-    },
-  },
-})
+export default function Component() {
+  const [particles, setParticles] = useState([])
 
-const lineVariants = {
-  hidden: { width: "0%" },
-  visible: { width: "100%" },
-}
-
-const FloatingShape = ({ animate }) => (
-  <motion.div
-    className="absolute rounded-full bg-gradient-to-r from-primary to-secondary opacity-20"
-    style={{
-      width: `${Math.random() * 100 + 80}px`,
-      height: `${Math.random() * 100 + 80}px`,
-    }}
-    animate={animate}
-    transition={{
-      duration: Math.random() * 20 + 15,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut",
-    }}
-  />
-)
-
-const GlowingOrb = () => (
-  <motion.div
-    className="absolute w-72 h-72 bg-gradient-to-r from-primary to-secondary rounded-full filter blur-3xl opacity-30"
-    animate={{
-      scale: [1, 1.3, 1],
-      opacity: [0.2, 0.5, 0.2],
-      rotate: [0, 360],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      repeatType: "reverse",
-    }}
-  />
-)
-
-export default function Something() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  })
-
-  const controls = useAnimation()
-  const router = useRouter()
-
-  React.useEffect(() => {
-    if (inView) {
-      controls.start("show")
-    }
-  }, [controls, inView])
-
-  const handleLearnMore = () => {
-    router.push('/about')
-  }
+  useEffect(() => {
+    const newParticles = Array.from({ length: 100 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 1,
+      rotate: Math.random() * 360,
+    }))
+    setParticles(newParticles)
+  }, [])
 
   return (
-    <div className="relative bg-background w-full min-h-screen overflow-hidden flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=600&width=800')] opacity-10 bg-repeat" />
-
-      {/* Floating Animated Shapes */}
-      {[...Array(20)].map((_, index) => (
-        <FloatingShape
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-black to-blue-900 flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Background Particle Effect */}
+      {particles.map((particle, index) => (
+        <motion.div
           key={index}
+          className="absolute bg-blue-500 rounded-full opacity-30"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: particle.size,
+            height: particle.size,
+          }}
           animate={{
-            x: [`${Math.random() * 100}vw`, `${Math.random() * 100}vw`],
-            y: [`${Math.random() * 100}vh`, `${Math.random() * 100}vh`],
-            rotate: [0, 360],
+            x: [0, Math.random() * 100 - 50],
+            y: [0, Math.random() * 100 - 50],
+            rotate: particle.rotate,
+          }}
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
           }}
         />
       ))}
 
-      {/* Glowing Orbs */}
-      <GlowingOrb />
-      <GlowingOrb />
-
-      <div
-        ref={ref}
-        className="container mx-auto flex flex-col items-center justify-center space-y-8 sm:space-y-12 relative z-10 text-center"
-      >
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={fadeIn({ direction: "up" })}
-          className="space-y-4 sm:space-y-6"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight">
-            Welcome to{" "}
-            <AnimatePresence>
-              <motion.span
-                key="company-name"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-primary block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-              >
-                NAIYO24 PRIVATE LIMITED
-              </motion.span>
-            </AnimatePresence>
-          </h2>
-          <motion.div
-            initial="hidden"
-            animate={controls}
-            variants={lineVariants}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="h-1 bg-gradient-to-r from-primary to-secondary w-24 mx-auto"
-          />
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={fadeIn({ direction: "up", delay: 0.2 })}
-          className="space-y-6 sm:space-y-8 max-w-2xl"
-        >
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">
-            <AnimatePresence>
-              {["Innovating", "Your", "Digital", "Presence"].map((word, index) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="inline-block mr-2"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </AnimatePresence>
-          </h3>
-          <motion.div
-            initial="hidden"
-            animate={controls}
-            variants={lineVariants}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="h-1 bg-gradient-to-r from-secondary to-primary w-24 mx-auto"
-          />
-          <motion.p
-            variants={fadeIn({ direction: "up", delay: 0.4 })}
-            className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-4 sm:px-0"
-          >
-            At NAIYO24 PRIVATE LIMITED, we're committed to transforming your digital dreams into reality. As a leading
-            provider of online application and website development services, our mission is to deliver cutting-edge
-            solutions that propel your business forward in the digital world.
-          </motion.p>
-          <motion.button
-            variants={fadeIn({ direction: "up", delay: 0.6 })}
-            whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(255, 255, 255, 0.5)" }}
-            whileTap={{ scale: 0.95 }}
-            className="group bg-gradient-to-r from-primary to-secondary text-primary-foreground px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:from-primary/90 hover:to-secondary/90 transform hover:-translate-y-2 shadow-lg hover:shadow-xl flex items-center justify-center"
-            onClick={handleLearnMore}
-          >
-            Learn More
-            <ChevronRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </motion.button>
-        </motion.div>
-      </div>
-
+      {/* Logo Animation */}
       <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-        className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-secondary via-primary to-secondary"
-      />
+        initial={{ scale: 0, rotate: 0 }}
+        animate={{ scale: 1, rotate: 360 }}
+        transition={{ duration: 1.5, type: "spring" }}
+        className="mb-8"
+      >
+        <div className="w-40 rounded-full bg-white p-4 shadow-lg">
+          <Image src={naiyo24} alt="NAIYO24 Logo" className="rounded-full"/>
+        </div>
+      </motion.div>
+
+      {/* Title Animation */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="text-4xl md:text-6xl font-extrabold text-white mb-4 text-center drop-shadow-lg"
+        style={{ textShadow: '0px 0px 15px rgba(255, 255, 255, 0.8)' }}
+      >
+        NAIYO24
+      </motion.h1>
+
+      {/* Subtitle Animation */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.8 }}
+        className="text-2xl md:text-3xl text-blue-400 mb-8 text-center"
+        style={{ textShadow: '0px 0px 10px rgba(0, 150, 255, 0.8)' }}
+      >
+        PRIVATE LIMITED
+      </motion.p>
+
+      {/* Slogan Animation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="relative"
+      >
+        <motion.p
+          animate={{ scale: [1, 1.05, 1], opacity: [1, 0.8, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="text-xl md:text-2xl text-blue-200 font-semibold text-center"
+          style={{ textShadow: '0px 0px 10px rgba(255, 255, 255, 0.6)' }}
+        >
+          Innovating Your Digital Presence
+        </motion.p>
+      </motion.div>
+
+      {/* Description Animation */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="mt-8 text-gray-300 max-w-3xl text-center px-4 md:px-0 leading-relaxed"
+      >
+        At NAIYO24 PRIVATE LIMITED, we're committed to transforming your digital dreams into reality. 
+        As a leading provider of online application and website development services, our mission is 
+        to deliver cutting-edge solutions that propel your business forward in the digital world.
+      </motion.p>
+
+      {/* Call to Action Button */}
+      <motion.a
+        href="#"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 1.5, duration: 0.8, type: "spring" }}
+        whileHover={{ scale: 1.1 }}
+        className="mt-12 px-6 py-3 bg-blue-500 text-white font-bold text-lg rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300"
+      >
+        Get Started
+      </motion.a>
     </div>
   )
 }
