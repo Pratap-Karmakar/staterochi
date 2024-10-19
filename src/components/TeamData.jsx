@@ -23,7 +23,54 @@ const teamData = [
     title: "API, Server-side programming and App Deployment",
     color: "from-orange-500 to-red-500"
   },
-  // Add more team members here...
+  {
+    quote: "Ongoing Projects - Naiyo24, Nariii",
+    name: "Rohit Ghosh",
+    title: "Full Stack, Backend Professional",
+    color: "from-yellow-500 to-pink-500"
+  },
+  {
+    quote: "Ongoing Projects - Luriana",
+    name: "Pratap Karmakar",
+    title: "Full Stack Web Developer Professional",
+    color: "from-green-500 to-blue-500"
+  },
+  {
+    quote: "Ongoing Projects - Nariii",
+    name: "Rana Kobiraj",
+    title: "Backend Developer",
+    color: "from-blue-500 to-orange-500"
+  },
+  {
+    quote: "Ongoing Projects - Naiyo24, Nariii",
+    name: "Subhankar Das",
+    title: "Frontend Developer",
+    color: "from-purple-500 to-teal-500"
+  },
+  {
+    quote: "Ongoing Projects - Naiyo24",
+    name: "Kaustubh Upadhyay",
+    title: "IT Backend Developer",
+    color: "from-teal-500 to-red-500"
+  },
+  {
+    quote: "Intern",
+    name: "Samadrita Banarjee",
+    title: "IT Frontend Developer",
+    color: "from-pink-500 to-red-500"
+  },
+  {
+    quote: "Ongoing Projects - Naiyo24, Luriana, Nariii",
+    name: "Tamashree Halder",
+    title: "BDM, SEO And Marketing",
+    color: "from-purple-500 to-red-500"
+  },
+  {
+    quote: "Ongoing Projects - Naiyo24",
+    name: "Souvik Nandy",
+    title: "Full Stack Developer",
+    color: "from-orange-500 to-purple-500"
+  },
 ]
 
 export default function TeamData() {
