@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import ResponsiveLanding from "@/components/LandingPage";
+import Navbar from "@/components/Navbar";
 import ProjectContact from "@/components/ProjectContact";
 import Something from "@/components/Something";
 import TeamData from "@/components/TeamData";
@@ -8,6 +9,7 @@ import WhatWeDo from "@/components/WhatWeDo";
 export default function Home() {
   return (
     <div >
+      <Navbar/>
       <section className="min-h-screen sticky top-0">
         <ResponsiveLanding />
       </section>
